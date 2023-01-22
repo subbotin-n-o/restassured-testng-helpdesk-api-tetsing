@@ -44,7 +44,7 @@ public abstract class BaseTest {
         authToken.setUsername(System.getProperty("base.username"));
         authToken.setPassword(System.getProperty("base.password"));
 
-        authToken = given()
+        return given()
                 .body(authToken)
                 .when()
                 .post("/api/login")
@@ -54,7 +54,6 @@ public abstract class BaseTest {
                 .extract()
                 .body()
                 .as(AuthToken.class);
-        return authToken;
     }
 
     protected Ticket buildNewTicket(Status status, int priority) {
