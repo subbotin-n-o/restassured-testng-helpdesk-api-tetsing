@@ -1,10 +1,11 @@
 package api;
 
-import io.restassured.RestAssured;
 import model.Status;
 import model.Ticket;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import static io.restassured.RestAssured.given;
 
 public class UpdateTicketTest extends BaseTest {
 
@@ -19,7 +20,7 @@ public class UpdateTicketTest extends BaseTest {
     }
 
     private void updateTicketNegative(Ticket ticket) {
-        RestAssured.given()
+        given()
                 .header("Authorization", "token " + login().getToken())
                 .body(ticket)
                 .when()
