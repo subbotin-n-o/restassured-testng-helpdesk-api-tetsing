@@ -16,6 +16,7 @@ public class UpdateTicketTest extends BaseTest {
 
         Assert.assertEquals(newCreateTicket, newClosedTicket);
 
+        newClosedTicket.setStatus(Status.OPEN.getCode());
         updateTicketNegative(newClosedTicket);
     }
 

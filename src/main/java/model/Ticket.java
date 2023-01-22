@@ -62,4 +62,5 @@ public class Ticket {
                 on_hold, description, resolution, priority,
                 last_escalation, secret_key, queue, kbitem, merged_to);
     }
+
 }
