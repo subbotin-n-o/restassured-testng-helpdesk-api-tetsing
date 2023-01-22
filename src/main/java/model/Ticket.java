@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -35,4 +37,29 @@ public class Ticket {
 
     @JsonIgnore
     private Integer merged_to;
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
+        Ticket ticket = (Ticket) o;
+        return status.equals(ticket.status) &&
+                priority.equals(ticket.priority) &&
+                queue.equals(ticket.queue) &&
+                (title.equals(ticket.title) || title.equals(ticket.getTitle())) &&
+                (resolution.equals(ticket.resolution) || resolution.equals(ticket.getResolution()));
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, due_date, assigned_to, title,
+                created, modified, submitter_email, status,
+                on_hold, description, resolution, priority,
+                last_escalation, secret_key, queue, kbitem, merged_to);
+    }
 }
